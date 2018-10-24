@@ -592,11 +592,15 @@
           if(data.status === 200){
             return data.data;
           }
-        }).then((data)=>{
-          if(data && typeof data === "object"){
+        }).then((validatorsVotingPowerList)=>{
+          if(validatorsVotingPowerList && typeof validatorsVotingPowerList === "object"){
             let seriesData = [], noDatayAxisDefaultMaxByValidators;
-
-            data.forEach(item=>{
+            let maxValue = 0;
+            let votingPowerList = Object.assign(validatorsVotingPowerList);
+            votingPowerList.forEach(item=>{
+              if(item.Power > maxValue){
+                maxValue = item.Power;
+              }
               if(item.Power == 0){
                 item.Power = ""
               }
@@ -605,12 +609,10 @@
               obj[1] = item.Power;
               seriesData.push(obj);
             });
-          //如果没有votingPower，返回的数据中会默认带两条数据
-          if(seriesData.length < 3){
-            noDatayAxisDefaultMaxByValidators = "100"
-          }
-            this.informationValidatorsLine = {seriesData,noDatayAxisDefaultMaxByValidators};
-
+            if(maxValue < 100){
+              noDatayAxisDefaultMaxByValidators = "100"
+            }
+            this.informationValidatorsLine = {seriesData,noDatayAxisDefaultMaxByValidators}
           }
         })
     },
