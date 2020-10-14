@@ -7,6 +7,7 @@ import (
 
 	"fmt"
 	"github.com/irisnet/explorer/backend/logger"
+	"github.com/irisnet/explorer/backend/version"
 	"math/rand"
 	"time"
 )
@@ -97,19 +98,19 @@ func init() {
 		ApiVersion:                   getEnv(KeyApiVersion, DefaultEnvironment),
 		MaxDrawCnt:                   getEnvInt(KeyMaxDrawCnt, DefaultEnvironment),
 		ShowFaucet:                   getEnv(KeyShowFaucet, DefaultEnvironment),
-		CurEnv:                      getEnv(KeyCurEnv, DefaultEnvironment),
-		CronTimeAssetGateways:       getEnvInt(KeyCronTimeAssetGateways, DefaultEnvironment),
-		CronTimeAssetTokens:         getEnvInt(KeyCronTimeAssetTokens, DefaultEnvironment),
-		CronTimeGovParams:           getEnvInt(KeyCronTimeGovParams, DefaultEnvironment),
-		CronTimeTxNumByDay:          getEnvInt(KeyCronTimeTxNumByDay, DefaultEnvironment),
-		CronTimeControlTask:         getEnvInt(KeyCronTimeControlTask, DefaultEnvironment),
-		CronTimeHeartBeat:           getEnvInt(KeyCronTimeHeartBeat, DefaultEnvironment),
-		CronTimeAccountRewards:      getEnvInt(KeyCronTimeAccountRewards, DefaultEnvironment),
-		CronTimeValidators:          getEnvInt(KeyCronTimeValidators, DefaultEnvironment),
-		CronTimeValidatorIcons:      getEnvInt(KeyCronTimeValidatorIcons, DefaultEnvironment),
-		CronTimeProposalVoters:      getEnvInt(KeyCronTimeProposalVoters, DefaultEnvironment),
-		CronTimeValidatorStaticInfo: getEnvInt(KeyCronTimeValidatorStaticInfo, DefaultEnvironment),
-		CronTimeFormatStaticDay:     getEnv(KeyCronTimeFormatStaticDay, DefaultEnvironment),
+		CurEnv:                       getEnv(KeyCurEnv, DefaultEnvironment),
+		CronTimeAssetGateways:        getEnvInt(KeyCronTimeAssetGateways, DefaultEnvironment),
+		CronTimeAssetTokens:          getEnvInt(KeyCronTimeAssetTokens, DefaultEnvironment),
+		CronTimeGovParams:            getEnvInt(KeyCronTimeGovParams, DefaultEnvironment),
+		CronTimeTxNumByDay:           getEnvInt(KeyCronTimeTxNumByDay, DefaultEnvironment),
+		CronTimeControlTask:          getEnvInt(KeyCronTimeControlTask, DefaultEnvironment),
+		CronTimeHeartBeat:            getEnvInt(KeyCronTimeHeartBeat, DefaultEnvironment),
+		CronTimeAccountRewards:       getEnvInt(KeyCronTimeAccountRewards, DefaultEnvironment),
+		CronTimeValidators:           getEnvInt(KeyCronTimeValidators, DefaultEnvironment),
+		CronTimeValidatorIcons:       getEnvInt(KeyCronTimeValidatorIcons, DefaultEnvironment),
+		CronTimeProposalVoters:       getEnvInt(KeyCronTimeProposalVoters, DefaultEnvironment),
+		CronTimeValidatorStaticInfo:  getEnvInt(KeyCronTimeValidatorStaticInfo, DefaultEnvironment),
+		CronTimeFormatStaticDay:      getEnv(KeyCronTimeFormatStaticDay, DefaultEnvironment),
 		CronTimeFormatStaticMonth:    getEnv(KeyCronTimeFormatStaticMonth, DefaultEnvironment),
 		CronTimeStaticDelegator:      getEnvInt(KeyCronTimeStaticDataDay, DefaultEnvironment),
 		CronTimeStaticValidator:      getEnvInt(KeyCronTimeStaticDataDay, DefaultEnvironment),
@@ -127,6 +128,7 @@ func init() {
 		server.CaculateDebug = false
 	}
 	logger.Info(fmt.Sprintf("serverInstanceNo: %s", server.InstanceNo))
+	logger.Info(fmt.Sprintf("apiServerVersion: %s", version.Version))
 	config.Server = server
 
 	hubcf := hubConf{
